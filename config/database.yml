@@ -1,0 +1,14 @@
+development:
+  database: disaster
+  username: root
+  password: qwer4321
+  adapter: mysql2
+  encoding: utf8mb4
+  host: db
+test:
+  database: disaster_test
+  username: root
+  password: qwer4321
+  adapter: mysql2
+  encoding: utf8mb4
+  host: db
