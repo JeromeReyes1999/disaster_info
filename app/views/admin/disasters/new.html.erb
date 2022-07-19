@@ -1,0 +1,12 @@
+<h1>New Disaster type<%= @disaster.id %></h1>
+<% if @disaster.errors.any? %>
+  <% @disaster.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
+<%= form_for @disaster, url: admin_disasters_path(@disaster), method: :post do |f| %>
+  <%= f.label :category %>
+  <%= f.text_area :category %>
+  <%= f.submit %>
+<% end %>
+<%= link_to 'back', admin_disasters_path %>
