@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_081405) do
+ActiveRecord::Schema.define(version: 2022_07_18_115041) do
+
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.string "content"
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "disasters", charset: "utf8mb4", force: :cascade do |t|
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -18,8 +34,11 @@ ActiveRecord::Schema.define(version: 2022_07_18_081405) do
     t.string "address"
     t.string "short_url"
     t.bigint "user_id"
+    t.bigint "disaster_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
+    t.index ["disaster_id"], name: "index_posts_on_disaster_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -36,6 +55,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_081405) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "role", default: "client"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
