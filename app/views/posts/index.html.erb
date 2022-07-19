@@ -1,4 +1,8 @@
 <h1>Post list</h1>
+<%= link_to 'Manage Disaster info', admin_disasters_path if current_user&.admin? %>
+
+<%= link_to "Logout", destroy_user_session_path, :method => :delete, class:"btn btn-warning" %>
+
 <table class="table table-striped table-hover">
   <thead>
   <tr>
