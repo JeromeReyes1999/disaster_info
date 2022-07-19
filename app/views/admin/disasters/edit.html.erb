@@ -1,0 +1,7 @@
+<h1>Edit Disaster id: <%= @disaster.id %></h1>
+
+<%= form_for @disaster, url: admin_disaster_path(@disaster), method: :patch do |f| %>
+  <%= f.label :category %>
+  <%= f.text_area :category %>
+  <%= f.submit %>
+<% end %>
