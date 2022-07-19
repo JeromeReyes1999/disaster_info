@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_own_post, only: [:edit, :update, :destroy, :show]
+  before_action :authenticate_user!, except: :index
+  before_action :set_post, only: :show
+  before_action :set_own_post, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all.includes(:user)
