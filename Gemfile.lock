@@ -217,7 +217,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
-  carrierwave
+  carrierwave (~> 2.0)
   devise
   jbuilder (~> 2.7)
   listen (~> 3.3)
