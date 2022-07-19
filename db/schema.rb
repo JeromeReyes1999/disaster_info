@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_115041) do
+ActiveRecord::Schema.define(version: 2022_07_19_092432) do
 
   create_table "comments", charset: "utf8mb4", force: :cascade do |t|
     t.string "content"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_115041) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.string "ip"
     t.index ["disaster_id"], name: "index_posts_on_disaster_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
