@@ -16,8 +16,12 @@
   <%= f.text_field :address, class: 'form-control' %>
 </div>
 <div class="form-group">
-  <%= f.label :image%>
-  <%= f.file_field :image,:html => {:multipart => true}, class: 'form-control' %>
+  <%= f.label :image %>
+  <%= f.file_field :image, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :disaster %>
+  <%= f.collection_select :disaster_id, Disaster.order(:category), :id, :category, include_blank: true %>
 </div>
 <div class="form-group">
   <%= f.submit class: 'btn btn-danger' %>
