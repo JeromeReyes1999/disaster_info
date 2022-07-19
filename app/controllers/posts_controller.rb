@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_own_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all.includes(:user)
+    @posts = Post.left_joins(:comments).group(:id).order('COUNT(comments.id) DESC').includes(:user,:disaster)
   end
 
   def new
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :address, :image)
+    params.require(:post).permit(:title, :content, :address, :image, :disaster_id)
   end
 
   def set_post
