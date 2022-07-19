@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_115041) do
   end
 
   create_table "disasters", charset: "utf8mb4", force: :cascade do |t|
-    t.string "type"
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
