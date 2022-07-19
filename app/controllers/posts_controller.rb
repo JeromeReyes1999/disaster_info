@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_own_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.left_joins(:comments).group(:id).order('COUNT(comments.id) DESC').includes(:user,:disaster)
+    @posts = Post.left_joins(:comments).group(:id).order('COUNT(comments.id) DESC').includes(:user, :disaster)
   end
 
   def new
@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.ip = request.remote_ip
     if @post.save
       redirect_to posts_path
     else
@@ -68,7 +69,7 @@ class PostsController < ApplicationController
   end
 
   def content_not_found
-    render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+    render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
   end
 
 end
