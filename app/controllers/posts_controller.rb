@@ -35,9 +35,12 @@ class PostsController < ApplicationController
   def show; end
 
   def destroy
-    if @post.destroy
-      redirect_to posts_path
+    if @post.comment.size.zero?
+      @post.destroy
+    else
+      flash[:notice] = "this post has comments you can't delete it"
     end
+    redirect_to posts_path
   end
 
   def redirect
