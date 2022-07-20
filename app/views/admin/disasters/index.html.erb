@@ -1,9 +1,12 @@
-<h1></h1>
-<table>
+<%= link_to 'Back to post', posts_path, class: 'btn btn-warning'%>
+<%= link_to "Logout", destroy_user_session_path, :method => :delete, class:"btn btn-warning float-right" %>
+
+<h1>Disaster type</h1>
+<table class="table table-striped table-hover">
   <thead>
-  <th>id</th>
-  <th>type</th>
-  <th>action</th>
+  <th>Id</th>
+  <th>Type</th>
+  <th>Action</th>
   </thead>
   <tbody>
   <% @disasters.each do |disaster| %>
@@ -17,4 +20,4 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'new disaster type', new_admin_disaster_path %>
+<%= link_to 'New', new_admin_disaster_path, class: 'btn btn-success' %>

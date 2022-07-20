@@ -21,8 +21,8 @@
 </div>
 <div class="form-group">
   <%= f.label :disaster %>
-  <%= f.collection_select :disaster_id, Disaster.order(:category), :id, :category, include_blank: true %>
+  <%= f.collection_select :disaster_id, Disaster.order(:category), :id, :category, {:include_blank => true}, {class: "form-control"} %>
 </div>
 <div class="form-group">
-  <%= f.submit class: 'btn btn-danger' %>
+  <%= f.submit class: 'btn btn-success' %>
 </div>

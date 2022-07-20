@@ -2,6 +2,6 @@
 
 <%= form_for @disaster, url: admin_disaster_path(@disaster), method: :patch do |f| %>
   <%= f.label :category %>
-  <%= f.text_area :category %>
+  <%= f.text_field :category %>
   <%= f.submit %>
 <% end %>

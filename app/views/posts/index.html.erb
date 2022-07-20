@@ -1,22 +1,22 @@
-<%= link_to 'Manage Disaster info', admin_disasters_path if current_user&.admin? %>
-
+<%= link_to 'Manage Disaster info', admin_disasters_path, class: 'btn btn-warning' if current_user&.admin? %>
+<%= link_to "Logout", destroy_user_session_path, :method => :delete, class: "btn btn-warning float-right" %>
 <h1>Post list</h1>
 
-<%= link_to "Logout", destroy_user_session_path, :method => :delete, class:"btn btn-warning" %>
+
 
 <table class="table table-striped table-hover">
   <thead>
   <tr>
-    <th scope="col">rank</th>
-    <th scope="col">id</th>
-    <th scope="col">creator</th>
-    <th scope="col">title</th>
-    <th scope="col">content</th>
-    <th scope="col">address</th>
-    <th scope="col">disaster</th>
+    <th scope="col">Rank</th>
+    <th scope="col">ID</th>
+    <th scope="col">Creator</th>
+    <th scope="col">Title</th>
+    <th scope="col">Content</th>
+    <th scope="col">Address</th>
+    <th scope="col">Disaster</th>
     <th scope="col">Short URL</th>
     <th scope="col">Image</th>
-    <th scope="col">country posted</th>
+    <th scope="col">Country posted</th>
     <th scope="col">ISP provider</th>
     <th scope="col">actions</th>
 
@@ -25,10 +25,13 @@
   <tbody>
   <% @posts.each_with_index do |post, index| %>
     <tr>
-      <td><%= index+1%>
-        <%if index < 3 %>
-          <br>HOT
-        <%end %>
+      <td><%= index + 1 %>
+        <% if index < 3 %>
+          <br>
+          <span class="badge bg-danger">
+              HOT
+          </span>
+        <% end %>
       </td>
       <td><%= post.id %></td>
       <td><%= post.user.email %></td>
@@ -36,17 +39,17 @@
       <td><%= post.content %></td>
       <td><%= post.address %></td>
       <td><%= post.disaster.category %></td>
-      <td><%= link_to "#{request.base_url}/#{post.short_url}", "#{request.base_url}/#{post.short_url}", target: :_self%></td>
+      <td><%= link_to "#{request.base_url}/#{post.short_url}", "#{request.base_url}/#{post.short_url}", target: :_self %></td>
       <td><%= image_tag "#{request.base_url}/#{post.image.url}" if post.image? %></td>
       <td><%= Geocoder.search(post.ip).first&.country %></td>
-      <td><%= Geocoder.search(post.ip).first&.data&.dig("org")%></td>
+      <td><%= Geocoder.search(post.ip).first&.data&.dig("org") %></td>
       <td>
-        <%= link_to :comments, post_comments_path(post) %>
-        <%= link_to "show this post #{post.id}", post_path(post) %>
-        <%= link_to "edit this post #{post.id}", edit_post_path(post) if post.user == current_user%>
-        <% if post.user == current_user%>
+        <%= link_to :comments, post_comments_path(post), class: 'btn btn-info' %>
+        <%= link_to "show this post #{post.id}", post_path(post), class: 'btn btn-primary' %>
+        <%= link_to "edit this post #{post.id}", edit_post_path(post), class: 'btn btn-warning' if post.user == current_user %>
+        <% if post.user == current_user %>
           <%= form_for post, url: post_path(post), method: :delete do |f| %>
-            <%= f.submit 'delete' %>
+            <%= f.submit 'delete', class: 'btn btn-danger' %>
           <% end %>
         <% end %>
       </td>

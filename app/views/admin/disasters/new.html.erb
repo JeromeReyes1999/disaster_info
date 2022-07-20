@@ -6,7 +6,7 @@
 <% end %>
 <%= form_for @disaster, url: admin_disasters_path(@disaster), method: :post do |f| %>
   <%= f.label :category %>
-  <%= f.text_area :category %>
+  <%= f.text_field :category %>
   <%= f.submit %>
 <% end %>
 <%= link_to 'back', admin_disasters_path %>

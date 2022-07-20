@@ -3,6 +3,7 @@ class Admin::DisastersController < ApplicationController
   before_action :check_admin
   before_action :set_disaster, only: [:edit, :update, :destroy]
 
+
   def index
     @disasters = Disaster.all
   end
