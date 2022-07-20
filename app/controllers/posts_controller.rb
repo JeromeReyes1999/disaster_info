@@ -15,6 +15,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    # for non-developer:
+    # @post.ip = request.remote_ip
     @post.ip = open('http://whatismyip.akamai.com').read
     if @post.save
       redirect_to posts_path
