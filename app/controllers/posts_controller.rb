@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :set_post, only: :show
   before_action :set_own_post, only: [:edit, :update, :destroy]
+  require 'open-uri'
 
   def index
     @posts = Post.left_joins(:comments).group(:id).order('COUNT(comments.id) DESC').includes(:user, :disaster)
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.ip = request.remote_ip
+    @post.ip = open('http://whatismyip.akamai.com').read
     if @post.save
       redirect_to posts_path
     else
@@ -35,7 +36,7 @@ class PostsController < ApplicationController
   def show; end
 
   def destroy
-    if @post.comment.size.zero?
+    if @post.comments.size.zero?
       @post.destroy
     else
       flash[:notice] = "this post has comments you can't delete it"
