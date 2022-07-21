@@ -1,7 +1,7 @@
 <h1>Edit Disaster id: <%= @disaster.id %></h1>
-
+<%= link_to 'back', admin_disasters_path, class: 'btn btn-danger' %>
 <%= form_for @disaster, url: admin_disaster_path(@disaster), method: :patch do |f| %>
   <%= f.label :category %>
   <%= f.text_field :category %>
-  <%= f.submit %>
+  <%= f.submit 'Update', class: 'btn btn-success' %>
 <% end %>

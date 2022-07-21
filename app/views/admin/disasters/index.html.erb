@@ -13,8 +13,8 @@
     <tr>
       <td><%= disaster.id %></td>
       <td><%= disaster.category %></td>
-      <td><%= link_to 'edit', edit_admin_disaster_path(disaster) %>
-        <%= button_to "delete", admin_disaster_path(disaster), method: :delete, data: { confirm: "Are you sure?" } %>
+      <td><%= link_to 'edit', edit_admin_disaster_path(disaster), class: 'btn btn-warning' %>
+        <%= button_to "delete", admin_disaster_path(disaster), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
       </td>
     </tr>
   <% end %>

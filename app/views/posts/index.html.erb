@@ -1,5 +1,7 @@
 <%= link_to 'Manage Disaster info', admin_disasters_path, class: 'btn btn-warning' if current_user&.admin? %>
-<%= link_to "Logout", destroy_user_session_path, :method => :delete, class: "btn btn-warning float-right" %>
+
+<%= link_to "Log Out", destroy_user_session_path, :method => :delete, class: "btn btn-warning float-right" if current_user%>
+<%= link_to "Log In", destroy_user_session_path, :method => :delete, class: "btn btn-success float-right" unless current_user%>
 <h1>Post list</h1>
 
 
@@ -39,14 +41,14 @@
       <td><%= post.content %></td>
       <td><%= post.address %></td>
       <td><%= post.disaster.category %></td>
-      <td><%= link_to "#{request.base_url}/#{post.short_url}", "#{request.base_url}/#{post.short_url}", target: :_self %></td>
-      <td><%= image_tag "#{request.base_url}/#{post.image.url}" if post.image? %></td>
+      <td><%= link_to "#{request.base_url}#{post.short_url}", "#{request.base_url}/#{post.short_url}", target: :_self %></td>
+      <td><%= image_tag "#{request.base_url}#{post.image.url}" if post.image? %></td>
       <td><%= Geocoder.search(post.ip).first&.country %></td>
       <td><%= Geocoder.search(post.ip).first&.data&.dig("org") %></td>
       <td>
         <%= link_to :comments, post_comments_path(post), class: 'btn btn-info' %>
-        <%= link_to "show this post #{post.id}", post_path(post), class: 'btn btn-primary' %>
-        <%= link_to "edit this post #{post.id}", edit_post_path(post), class: 'btn btn-warning' if post.user == current_user %>
+        <%= link_to "show", post_path(post), class: 'btn btn-primary' %>
+        <%= link_to "edit", edit_post_path(post), class: 'btn btn-warning' if post.user == current_user %>
         <% if post.user == current_user %>
           <%= form_for post, url: post_path(post), method: :delete do |f| %>
             <%= f.submit 'delete', class: 'btn btn-danger' %>
