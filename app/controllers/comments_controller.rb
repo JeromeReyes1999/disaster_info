@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find params[:post_id]
+    @post = Post.find_by(serial_number: params[:serial_number])
   end
 
   def comment_params

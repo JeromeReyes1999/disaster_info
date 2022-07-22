@@ -59,7 +59,7 @@ class PostsController < ApplicationController
   private
 
   def set_own_post
-    @post = current_user.posts.find_by_id(params[:id])
+    @post = current_user.posts.find_by(serial_number: params[:serial_number])
     if @post.nil?
       flash[:alert] = 'this post not belongs_to you or not exists'
       redirect_to posts_path
@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(serial_number: params[:serial_number])
   end
 
   def content_not_found

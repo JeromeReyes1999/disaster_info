@@ -17,6 +17,7 @@
     <th scope="col">Address</th>
     <th scope="col">Disaster</th>
     <th scope="col">Short URL</th>
+    <th scope="col">Serial Number</th>
     <th scope="col">Image</th>
     <th scope="col">Country posted</th>
     <th scope="col">ISP provider</th>
@@ -41,12 +42,13 @@
       <td><%= post.content %></td>
       <td><%= post.address %></td>
       <td><%= post.disaster.category %></td>
-      <td><%= link_to "#{request.base_url}#{post.short_url}", "#{request.base_url}/#{post.short_url}", target: :_self %></td>
+      <td><%= link_to "#{request.base_url}/#{post.short_url}", "#{request.base_url}/#{post.short_url}", target: :_self %></td>
+      <td><%= post.serial_number %></td>
       <td><%= image_tag "#{request.base_url}#{post.image.url}" if post.image? %></td>
       <td><%= Geocoder.search(post.ip).first&.country %></td>
       <td><%= Geocoder.search(post.ip).first&.data&.dig("org") %></td>
       <td>
-        <%= link_to :comments, post_comments_path(post), class: 'btn btn-info' %>
+        <%#= link_to :comments, post_comments_path(post), class: 'btn btn-info' %>
         <%= link_to "show", post_path(post), class: 'btn btn-primary' %>
         <%= link_to "edit", edit_post_path(post), class: 'btn btn-warning' if post.user == current_user %>
         <% if post.user == current_user %>
